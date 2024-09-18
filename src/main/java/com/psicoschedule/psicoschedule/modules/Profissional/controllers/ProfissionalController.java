@@ -1,8 +1,8 @@
-package com.psicoschedule.psicoschedule.modules.Profissional.controller;
+package com.psicoschedule.psicoschedule.modules.Profissional.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.psicoschedule.psicoschedule.modules.Profissional.ProfissionalEntity;
+import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.CreateProfissional;
 
 import jakarta.validation.Valid;

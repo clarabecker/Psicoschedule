@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.psicoschedule.psicoschedule.exceptions.UserFoundException;
-import com.psicoschedule.psicoschedule.modules.Profissional.ProfissionalEntity;
-import com.psicoschedule.psicoschedule.modules.Profissional.ProfissionalRepository;
+import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
+import com.psicoschedule.psicoschedule.modules.Profissional.repositories.ProfissionalRepository;
 
 @Service
 public class CreateProfissional{

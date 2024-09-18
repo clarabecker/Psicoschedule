@@ -1,4 +1,4 @@
-package com.psicoschedule.psicoschedule.modules.Profissional;
+package com.psicoschedule.psicoschedule.modules.Profissional.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 
