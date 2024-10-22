@@ -8,4 +8,6 @@ import com.psicoschedule.psicoschedule.modules.Profissional.entities.Profissiona
 
 public interface ProfissionalRepository extends JpaRepository<ProfissionalEntity, UUID> {
     Optional<ProfissionalEntity> findByloginOrCPF(String login, String CPF);
+
+    Optional<ProfissionalEntity> findBylogin(String login);
 }

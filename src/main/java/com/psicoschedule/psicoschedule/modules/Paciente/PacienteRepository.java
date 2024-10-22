@@ -6,4 +6,5 @@ import java.util.UUID;
 
 public interface PacienteRepository extends JpaRepository<PacienteEntity, UUID>{
     Optional<PacienteEntity> findByloginOrCPF(String login, String CPF);
+    
 }
