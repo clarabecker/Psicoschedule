@@ -13,7 +13,7 @@ import com.psicoschedule.psicoschedule.modules.Profissional.repositories.Profiss
 import com.psicoschedule.psicoschedule.modules.Sessão.SessaoRepository;
 
 @Service
-public class DeleteByLogin {
+public class DeleteByLoginProfissional {
 
     @Autowired
     private ProfissionalRepository profissionalRepository;
@@ -37,7 +37,7 @@ public class DeleteByLogin {
 
      this.agendaRepository.deleteByProfissionalEntity(profissionalExistente.get());
 
-     // Deletar o profissional
+     // Deletar o profissional da sessao
      this.sessaoRepository.deleteByProfissionalEntity(profissionalExistente.get());
 
     // Realize a deleção do profissional

@@ -9,7 +9,7 @@ import com.psicoschedule.psicoschedule.modules.Profissional.DTO.UpdateProfission
 import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
 
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.CreateProfissional;
-import com.psicoschedule.psicoschedule.modules.Profissional.useCases.DeleteByLogin;
+import com.psicoschedule.psicoschedule.modules.Profissional.useCases.DeleteByLoginProfissional;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.FindProfissionalByLogin;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.ListAllProfissional;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.UpdateProfissional;
@@ -44,7 +44,7 @@ public class ProfissionalController {
     private UpdateProfissional updateProfissional;
 
     @Autowired 
-    private DeleteByLogin deleteByLogin;
+    private DeleteByLoginProfissional deleteByLogin;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody ProfissionalEntity profissionalEntity) {
