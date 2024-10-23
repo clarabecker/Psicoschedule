@@ -15,4 +15,11 @@ public class UpdateProfissionalDTO {
     private String biografia;
     private String certificados;
     private String metodoAtendimento;
+    private String genero;
+    private String CPF;
+    private String foto; 
+    private String email;
+    private String login;
+    private String senha;
+    private String data_nascimento;
 }

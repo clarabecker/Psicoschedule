@@ -61,7 +61,7 @@ public class ProfissionalController {
         }
     }
 
-    @GetMapping("/home")
+    @GetMapping("/profiles")
     public List<ProfissionalEntity> listarTodos() {
         return listAllProfissional.listAll(); 
     }
