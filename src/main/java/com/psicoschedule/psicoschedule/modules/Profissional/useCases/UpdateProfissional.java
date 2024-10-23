@@ -2,6 +2,7 @@ package com.psicoschedule.psicoschedule.modules.Profissional.useCases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.psicoschedule.psicoschedule.exceptions.UserNotFoundException;
 import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
@@ -17,6 +18,7 @@ public class UpdateProfissional{
     @Autowired
     private ProfissionalRepository profissionalRepository;
 
+    @Transactional
     public ProfissionalEntity updateProfissional(String login, UpdateProfissionalDTO updateProfissionalDTO) {
         Optional<ProfissionalEntity> optionalProfissional = profissionalRepository.findBylogin(login);
         

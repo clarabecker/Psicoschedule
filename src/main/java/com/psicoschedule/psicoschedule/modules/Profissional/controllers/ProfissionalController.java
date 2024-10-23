@@ -9,6 +9,7 @@ import com.psicoschedule.psicoschedule.modules.Profissional.DTO.UpdateProfission
 import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
 
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.CreateProfissional;
+import com.psicoschedule.psicoschedule.modules.Profissional.useCases.DeleteByLogin;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.FindProfissionalByLogin;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.ListAllProfissional;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.UpdateProfissional;
@@ -18,7 +19,9 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +42,9 @@ public class ProfissionalController {
 
     @Autowired 
     private UpdateProfissional updateProfissional;
+
+    @Autowired 
+    private DeleteByLogin deleteByLogin;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody ProfissionalEntity profissionalEntity) {
@@ -75,6 +81,18 @@ public class ProfissionalController {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+   @DeleteMapping("/deletarProfissional/{login}")
+    public ResponseEntity<Object> deleteProfissional(@PathVariable String login) {
+        try {
+            this.deleteByLogin.execute(login); 
+            return ResponseEntity.noContent().build(); 
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage()); 
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); 
         }
     }
 

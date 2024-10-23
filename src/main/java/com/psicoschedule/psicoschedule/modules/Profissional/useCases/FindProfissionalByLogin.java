@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.psicoschedule.psicoschedule.exceptions.UserNotFoundException;
 import com.psicoschedule.psicoschedule.modules.Profissional.DTO.ProfissionalLoginDTO;
@@ -16,6 +17,7 @@ public class FindProfissionalByLogin {
     @Autowired
     private ProfissionalRepository profissionalRepository;
 
+    @Transactional(readOnly = true)
     public ProfissionalEntity execute(ProfissionalLoginDTO profissionalLoginDTO) {
         Optional<ProfissionalEntity> profissionalExistente = 
             this.profissionalRepository.findBylogin(profissionalLoginDTO.getLogin());

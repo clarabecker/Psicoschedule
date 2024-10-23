@@ -10,4 +10,6 @@ public interface ProfissionalRepository extends JpaRepository<ProfissionalEntity
     Optional<ProfissionalEntity> findByloginOrCPF(String login, String CPF);
 
     Optional<ProfissionalEntity> findBylogin(String login);
+
+    Optional<ProfissionalEntity> deleteBylogin(String login);
 }
