@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.psicoschedule.psicoschedule.modules.Profissional.entities.AgendaEntity;
-import com.psicoschedule.psicoschedule.modules.Profissional.useCases.CreateAgenda;
+import com.psicoschedule.psicoschedule.modules.Profissional.useCases.Agenda.CreateAgenda;
 
 import jakarta.validation.Valid;
 

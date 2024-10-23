@@ -1,4 +1,4 @@
-package com.psicoschedule.psicoschedule.modules.Profissional.useCases;
+package com.psicoschedule.psicoschedule.modules.Profissional.useCases.Agenda;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

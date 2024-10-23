@@ -20,6 +20,10 @@ public class UpdateProfissional{
 
     @Transactional
     public ProfissionalEntity updateProfissional(String login, UpdateProfissionalDTO updateProfissionalDTO) {
+        if (updateProfissionalDTO == null) {
+            throw new IllegalArgumentException("UpdatePacienteDTO must not be null");
+        }
+
         Optional<ProfissionalEntity> optionalProfissional = profissionalRepository.findBylogin(login);
         
         if (optionalProfissional.isPresent()) {
