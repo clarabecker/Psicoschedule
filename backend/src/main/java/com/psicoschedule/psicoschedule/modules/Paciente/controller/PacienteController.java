@@ -3,6 +3,7 @@ package com.psicoschedule.psicoschedule.modules.Paciente.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.psicoschedule.psicoschedule.exceptions.UserNotFoundException;
 import com.psicoschedule.psicoschedule.modules.Paciente.PacienteEntity;
+import com.psicoschedule.psicoschedule.modules.Paciente.DTO.AuthPacienteDTO;
 import com.psicoschedule.psicoschedule.modules.Paciente.DTO.UpdatePacienteDTO;
+import com.psicoschedule.psicoschedule.modules.Paciente.useCases.AuthPaciente;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.CreatePaciente;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.DeleteByLoginPaciente;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.UpdatePaciente;
@@ -30,6 +33,9 @@ public class PacienteController {
 
     @Autowired
     private DeleteByLoginPaciente deleteByLogin;
+
+    @Autowired 
+    private AuthPaciente authPaciente;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody PacienteEntity pacienteEntity) {
@@ -64,6 +70,15 @@ public class PacienteController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage()); 
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody @Validated AuthPacienteDTO authPacienteDTO) {
+        PacienteEntity paciente = authPaciente.autenticar(authPacienteDTO.getLogin(), authPacienteDTO.getSenha());
+        if (paciente != null) {
+            return ResponseEntity.ok("Login bem-sucedido como Paciente!");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
     }
 
 }

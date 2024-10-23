@@ -1,29 +1,34 @@
 package com.psicoschedule.psicoschedule.modules.Paciente.useCases;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.psicoschedule.psicoschedule.exceptions.UserFoundException;
 import com.psicoschedule.psicoschedule.modules.Paciente.PacienteEntity;
 import com.psicoschedule.psicoschedule.modules.Paciente.PacienteRepository;
 
 @Service
-public class CreatePaciente {
+public class AuthPaciente {
+
     @Autowired
     private PacienteRepository pacienteRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public PacienteEntity execute(PacienteEntity pacienteEntity) {
-        this.pacienteRepository.findByloginOrCPF(pacienteEntity.getLogin(), pacienteEntity.getCPF())
-        .ifPresent((user) -> {
-            throw new UserFoundException();
-        });
+    public PacienteEntity autenticar(String login, String senha) {
+        Optional<PacienteEntity> pacienteOpt = pacienteRepository.findBylogin(login);
         
-        pacienteEntity.setSenha(passwordEncoder.encode(pacienteEntity.getSenha()));
-        return this.pacienteRepository.save(pacienteEntity);
+        if (pacienteOpt.isPresent()) {
+            PacienteEntity paciente = pacienteOpt.get();
+            if (passwordEncoder.matches(senha, paciente.getSenha())) {
+                return paciente; 
+            }
+        }
+        
+        return null;
     }
-    
 }
+
