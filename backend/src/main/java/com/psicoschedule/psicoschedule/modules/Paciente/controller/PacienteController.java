@@ -20,6 +20,7 @@ import com.psicoschedule.psicoschedule.modules.Paciente.useCases.CreatePaciente;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.DeleteByLoginPaciente;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.UpdatePaciente;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @RestController
@@ -73,12 +74,12 @@ public class PacienteController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Validated AuthPacienteDTO authPacienteDTO) {
+    public ResponseEntity<String> login(@RequestBody @Validated AuthPacienteDTO authPacienteDTO, HttpSession session) {
         PacienteEntity paciente = authPaciente.autenticar(authPacienteDTO.getLogin(), authPacienteDTO.getSenha());
         if (paciente != null) {
-            return ResponseEntity.ok("Login bem-sucedido como Paciente!");
+            session.setAttribute("login", paciente.getLogin());
+            return ResponseEntity.ok("Login bem-sucedido!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
     }
-
 }

@@ -4,7 +4,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.psicoschedule.psicoschedule.modules.Pessoa.PessoaEntity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import java.time.LocalDateTime;
 

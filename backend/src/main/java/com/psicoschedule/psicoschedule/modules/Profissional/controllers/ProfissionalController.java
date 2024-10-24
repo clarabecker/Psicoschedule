@@ -3,8 +3,6 @@ package com.psicoschedule.psicoschedule.modules.Profissional.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.psicoschedule.psicoschedule.exceptions.UserNotFoundException;
-import com.psicoschedule.psicoschedule.modules.Paciente.PacienteEntity;
-import com.psicoschedule.psicoschedule.modules.Paciente.useCases.AuthPaciente;
 import com.psicoschedule.psicoschedule.modules.Profissional.DTO.AuthProfissionalDTO;
 import com.psicoschedule.psicoschedule.modules.Profissional.DTO.ProfissionalLoginDTO;
 import com.psicoschedule.psicoschedule.modules.Profissional.DTO.UpdateProfissionalDTO;
@@ -17,6 +15,7 @@ import com.psicoschedule.psicoschedule.modules.Profissional.useCases.FindProfiss
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.ListAllProfissional;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.UpdateProfissional;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -51,7 +50,7 @@ public class ProfissionalController {
     private DeleteByLoginProfissional deleteByLogin;
 
     @Autowired
-    private AuthPaciente authPaciente;
+    private AuthProfissional authProfissional;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody ProfissionalEntity profissionalEntity) {
@@ -104,12 +103,12 @@ public class ProfissionalController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Validated AuthProfissionalDTO authProfissionalDTO) {
-        PacienteEntity paciente = authPaciente.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
-        if (paciente != null) {
-            return ResponseEntity.ok("Login bem-sucedido como Paciente!");
+    public ResponseEntity<String> login(@RequestBody @Validated AuthProfissionalDTO authProfissionalDTO, HttpSession session) {
+        ProfissionalEntity profissional = authProfissional.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
+        if (profissional != null) {
+            session.setAttribute("login", profissional.getLogin());
+            return ResponseEntity.ok("Login bem-sucedido!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
     }
-
 }

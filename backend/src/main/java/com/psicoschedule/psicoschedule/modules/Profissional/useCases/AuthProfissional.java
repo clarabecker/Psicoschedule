@@ -19,12 +19,12 @@ public class AuthProfissional {
     private PasswordEncoder passwordEncoder;
 
     public ProfissionalEntity autenticar(String login, String senha) {
-        Optional<ProfissionalEntity> pacienteOpt = profissionalRepository.findBylogin(login);
+        Optional<ProfissionalEntity> profissionalOpt = profissionalRepository.findBylogin(login);
         
-        if (pacienteOpt.isPresent()) {
-            ProfissionalEntity paciente = pacienteOpt.get();
-            if (passwordEncoder.matches(senha, paciente.getSenha())) {
-                return paciente; 
+        if (profissionalOpt.isPresent()) {
+            ProfissionalEntity profissional = profissionalOpt.get();
+            if (passwordEncoder.matches(senha, profissional.getSenha())) {
+                return profissional; 
             }
         }
         

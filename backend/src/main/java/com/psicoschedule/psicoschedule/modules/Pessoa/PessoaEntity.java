@@ -1,4 +1,5 @@
 package com.psicoschedule.psicoschedule.modules.Pessoa;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public abstract class PessoaEntity{
     @Email(message = "O campo (email) deve contrer um e-mail válido")
     protected String email;
 
-    @NotBlank()
+    @Column(unique = true)
     @Pattern(regexp = "\\S+", message = "O campo login não deve conter espaço")
     protected String login;
 
