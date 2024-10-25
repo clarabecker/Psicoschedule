@@ -10,12 +10,13 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Data
 @Entity(name = "Profissional")
-
 public class ProfissionalEntity extends PessoaEntity{
     private String numeroRegistro;
     private String especialidade;
@@ -27,7 +28,7 @@ public class ProfissionalEntity extends PessoaEntity{
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "profissional_role", joinColumns = @JoinColumn(name = "profissional_id"))
     @Column(name = "role")
-    private Set<String> roles;
+    private Set<String> role;
     
     @CreationTimestamp
     private LocalDateTime createdAt;

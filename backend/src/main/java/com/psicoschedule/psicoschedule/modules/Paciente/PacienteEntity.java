@@ -29,7 +29,7 @@ public class PacienteEntity extends PessoaEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "paciente_roles", joinColumns = @JoinColumn(name = "paciente_id"))
     @Column(name = "role")
-    private Set<String> roles;
+    private Set<String> role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

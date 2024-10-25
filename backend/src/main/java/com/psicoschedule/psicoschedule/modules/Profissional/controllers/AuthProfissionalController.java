@@ -16,13 +16,13 @@ import com.psicoschedule.psicoschedule.modules.Profissional.useCases.AuthProfiss
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/profissional")
+@RequestMapping("/profissional/")
 public class AuthProfissionalController {
     
     @Autowired
     private AuthProfissional authProfissional;
     
-    @PostMapping("/auth")
+    @PostMapping("auth")
     public ResponseEntity<String> login(@RequestBody @Validated AuthProfissionalDTO authProfissionalDTO, HttpSession session) {
         ProfissionalEntity profissional = authProfissional.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
         if (profissional != null) {

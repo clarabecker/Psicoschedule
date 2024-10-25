@@ -20,9 +20,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers("/profissional/cadastro").permitAll()
-                    .requestMatchers("/profissional/login").permitAll()
+                    .requestMatchers("/profissional/auth").permitAll()
                     .requestMatchers("/paciente/cadastro").permitAll()
-                    .requestMatchers("/paciente/login").permitAll();
+                    .requestMatchers("/paciente/auth").permitAll();
                 auth.anyRequest().authenticated();
             })
             .addFilterBefore(filterAutenticacao, BasicAuthenticationFilter.class);

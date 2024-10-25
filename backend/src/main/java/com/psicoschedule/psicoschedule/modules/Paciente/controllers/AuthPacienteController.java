@@ -16,13 +16,13 @@ import com.psicoschedule.psicoschedule.modules.Paciente.useCases.AuthPaciente;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/paciente")
+@RequestMapping("/paciente/")
 public class AuthPacienteController {
     
     @Autowired 
     private AuthPaciente authPaciente;
     
-    @PostMapping("/auth")
+    @PostMapping("auth")
     public ResponseEntity<String> login(@RequestBody @Validated AuthPacienteDTO authPacienteDTO, HttpSession session) {
         PacienteEntity paciente = authPaciente.autenticar(authPacienteDTO.getLogin(), authPacienteDTO.getSenha());
         if (paciente != null) {

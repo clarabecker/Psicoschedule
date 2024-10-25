@@ -39,7 +39,7 @@ public abstract class PessoaEntity{
     @Pattern(regexp = "\\S+", message = "O campo login não deve conter espaço")
     protected String login;
 
-    @Length(min = 10, max = 100, message= "A senha deve conter entre 10 e 100 cacteres")
+    @Length(min = 5, max = 100, message= "A senha deve conter entre 5 e 100 cacteres")
     protected String senha;
 
     @NotNull(message = "A data de nascimento não pode ser nula")

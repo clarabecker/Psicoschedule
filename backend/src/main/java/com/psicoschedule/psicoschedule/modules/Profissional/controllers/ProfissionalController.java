@@ -17,8 +17,10 @@ import com.psicoschedule.psicoschedule.modules.Profissional.useCases.UpdateProfi
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import java.util.Set;
 
 import java.util.List;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,6 +54,7 @@ public class ProfissionalController {
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody ProfissionalEntity profissionalEntity) {
         try{
+            profissionalEntity.setRole(new HashSet<>(Set.of("PROFISSIONAL")));
             var result = this.createProfissional.execute(profissionalEntity);  
             return ResponseEntity.ok().body(result);
         }
