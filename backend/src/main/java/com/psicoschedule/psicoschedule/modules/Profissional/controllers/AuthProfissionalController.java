@@ -27,6 +27,7 @@ public class AuthProfissionalController {
         ProfissionalEntity profissional = authProfissional.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
         if (profissional != null) {
             session.setAttribute("login", profissional.getLogin());
+            session.setAttribute("role", "PROFISSIONAL");
             return ResponseEntity.ok("Login bem-sucedido!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");

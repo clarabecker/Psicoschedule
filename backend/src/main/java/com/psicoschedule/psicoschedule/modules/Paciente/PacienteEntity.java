@@ -26,10 +26,7 @@ public class PacienteEntity extends PessoaEntity {
     @NotEmpty(message = "Usuário deve infomar a especialidade desejada")
     private String preferenciaEspecialidade;
     
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "paciente_roles", joinColumns = @JoinColumn(name = "paciente_id"))
-    @Column(name = "role")
-    private Set<String> role;
+    private String role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

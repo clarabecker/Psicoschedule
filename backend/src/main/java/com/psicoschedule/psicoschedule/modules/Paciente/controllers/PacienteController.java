@@ -38,7 +38,7 @@ public class PacienteController {
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody PacienteEntity pacienteEntity) {
         try{
-            pacienteEntity.setRole(new HashSet<>(Set.of("PACIENTE")));
+            pacienteEntity.setRole("PACIENTE");
             var result = this.createPaciente.execute(pacienteEntity);  
             return ResponseEntity.ok().body(result);
         }

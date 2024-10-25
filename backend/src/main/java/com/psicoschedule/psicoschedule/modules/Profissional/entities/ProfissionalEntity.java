@@ -25,10 +25,7 @@ public class ProfissionalEntity extends PessoaEntity{
     private String notaAutorizacao;
     private String metodoAtendimento;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "profissional_role", joinColumns = @JoinColumn(name = "profissional_id"))
-    @Column(name = "role")
-    private Set<String> role;
+    private String role;
     
     @CreationTimestamp
     private LocalDateTime createdAt;
