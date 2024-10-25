@@ -1,4 +1,4 @@
-package com.psicoschedule.psicoschedule.filters;
+package com.psicoschedule.psicoschedule.security;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 
 @Component
-public class FilterAutenticacao implements Filter {
+public class SecurityFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterchain)
@@ -25,12 +25,12 @@ public class FilterAutenticacao implements Filter {
         String uri = req.getRequestURI();
 
 
-        if (uri.equals("/paciente/cadastro") || uri.equals("/paciente/login")) {
+        if (uri.equals("/paciente/cadastro") || uri.equals("/paciente/auth")) {
             filterchain.doFilter(request, response);
             return;
         }
 
-        if (uri.equals("/profissional/cadastro") || uri.equals("/profissional/login")) {
+        if (uri.equals("/profissional/cadastro") || uri.equals("/profissional/auth")) {
             filterchain.doFilter(request, response);
             return;
         }

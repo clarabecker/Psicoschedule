@@ -1,4 +1,4 @@
-package com.psicoschedule.psicoschedule.modules.Paciente.controller;
+package com.psicoschedule.psicoschedule.modules.Paciente.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,9 +34,6 @@ public class PacienteController {
 
     @Autowired
     private DeleteByLoginPaciente deleteByLogin;
-
-    @Autowired 
-    private AuthPaciente authPaciente;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody PacienteEntity pacienteEntity) {
@@ -71,15 +68,5 @@ public class PacienteController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage()); 
         }
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Validated AuthPacienteDTO authPacienteDTO, HttpSession session) {
-        PacienteEntity paciente = authPaciente.autenticar(authPacienteDTO.getLogin(), authPacienteDTO.getSenha());
-        if (paciente != null) {
-            session.setAttribute("login", paciente.getLogin());
-            return ResponseEntity.ok("Login bem-sucedido!");
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
     }
 }

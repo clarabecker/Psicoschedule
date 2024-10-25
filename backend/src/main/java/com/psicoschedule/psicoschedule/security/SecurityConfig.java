@@ -1,4 +1,4 @@
-package com.psicoschedule.psicoschedule.config;
+package com.psicoschedule.psicoschedule.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,14 +8,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import com.psicoschedule.psicoschedule.filters.FilterAutenticacao;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    private FilterAutenticacao filterAutenticacao;
+    private SecurityFilter filterAutenticacao;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{

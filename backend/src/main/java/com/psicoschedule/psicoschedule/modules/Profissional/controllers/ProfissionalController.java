@@ -48,9 +48,6 @@ public class ProfissionalController {
 
     @Autowired 
     private DeleteByLoginProfissional deleteByLogin;
-
-    @Autowired
-    private AuthProfissional authProfissional;
     
     @PostMapping("/cadastro")
     public ResponseEntity<Object> create(@Valid @RequestBody ProfissionalEntity profissionalEntity) {
@@ -102,13 +99,4 @@ public class ProfissionalController {
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Validated AuthProfissionalDTO authProfissionalDTO, HttpSession session) {
-        ProfissionalEntity profissional = authProfissional.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
-        if (profissional != null) {
-            session.setAttribute("login", profissional.getLogin());
-            return ResponseEntity.ok("Login bem-sucedido!");
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
-    }
 }
