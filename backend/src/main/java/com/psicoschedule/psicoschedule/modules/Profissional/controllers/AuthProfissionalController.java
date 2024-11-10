@@ -13,6 +13,7 @@ import com.psicoschedule.psicoschedule.modules.Profissional.DTO.AuthProfissional
 import com.psicoschedule.psicoschedule.modules.Profissional.entities.ProfissionalEntity;
 import com.psicoschedule.psicoschedule.modules.Profissional.useCases.AuthProfissional;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -27,9 +28,22 @@ public class AuthProfissionalController {
         ProfissionalEntity profissional = authProfissional.autenticar(authProfissionalDTO.getLogin(), authProfissionalDTO.getSenha());
         if (profissional != null) {
             session.setAttribute("login", profissional.getLogin());
-            session.setAttribute("role", "PROFISSIONAL");
+            session.setAttribute("role", profissional.getRole());
             return ResponseEntity.ok("Login bem-sucedido!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
     }
+
+    @PostMapping("logoff")
+    public String logoff(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); 
+
+        if (session != null) {
+            session.invalidate(); 
+            return "Logoff realizado com sucesso!";
+        }
+
+        return "Nenhuma sessão ativa para finalizar.";
+    }
 }
+

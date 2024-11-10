@@ -1,7 +1,6 @@
 package com.psicoschedule.psicoschedule.modules.Paciente.DTO;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class UpdatePacienteDTO {
     protected String nome;
@@ -14,7 +13,4 @@ public class UpdatePacienteDTO {
     protected String genero;
     protected String CPF;
     protected String foto; 
-    private LocalTime preferenciaHorario;
-    private String preferenciaDiaSemana;
-    private String preferenciaEspecialidade;
 }

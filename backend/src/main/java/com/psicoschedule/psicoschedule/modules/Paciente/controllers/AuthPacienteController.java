@@ -14,6 +14,7 @@ import com.psicoschedule.psicoschedule.modules.Paciente.PacienteEntity;
 import com.psicoschedule.psicoschedule.modules.Paciente.DTO.AuthPacienteDTO;
 import com.psicoschedule.psicoschedule.modules.Paciente.useCases.AuthPaciente;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -29,9 +30,21 @@ public class AuthPacienteController {
         
         if (paciente != null) {
             session.setAttribute("login", paciente.getLogin());
-            session.setAttribute("role", "PACIENTE");
+            session.setAttribute("role", paciente.getRole());
             return ResponseEntity.ok("Login bem-sucedido!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas!");
+    }
+
+    @PostMapping("logoff")
+    public String logoff(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); 
+
+        if (session != null) {
+            session.invalidate(); 
+            return "Logoff realizado com sucesso!";
+        }
+
+        return "Nenhuma sessão ativa para finalizar.";
     }
 }

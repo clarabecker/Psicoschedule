@@ -4,16 +4,10 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.psicoschedule.psicoschedule.modules.Pessoa.PessoaEntity;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @Entity(name = "Profissional")

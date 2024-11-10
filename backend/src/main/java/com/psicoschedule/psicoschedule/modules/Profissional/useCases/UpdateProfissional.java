@@ -37,9 +37,8 @@ public class UpdateProfissional{
                             String fieldName = method.getName().substring(3); // Remove "get"
                             String setterName = "set" + fieldName;
 
-                            // Obtém o método setter correspondente
                             Method setter = ProfissionalEntity.class.getMethod(setterName, method.getReturnType());
-                            setter.invoke(profissional, value); // Invoca o setter
+                            setter.invoke(profissional, value); 
                         }
                     } catch (NoSuchMethodException e) {
                         System.out.println("Setter not found for: " + method.getName());
@@ -50,7 +49,6 @@ public class UpdateProfissional{
                 }
             }
 
-            // Salva as alterações
             return profissionalRepository.save(profissional);
         } else {
             throw new UserNotFoundException();
