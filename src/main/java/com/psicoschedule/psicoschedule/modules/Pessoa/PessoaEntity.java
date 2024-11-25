@@ -1,25 +1,17 @@
 package com.psicoschedule.psicoschedule.modules.Pessoa;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.MappedSuperclass;
-
-import lombok.Data;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Data
 @MappedSuperclass
@@ -42,7 +34,6 @@ public abstract class PessoaEntity{
     @Length(min = 5, max = 100, message= "A senha deve conter entre 5 e 100 cacteres")
     protected String senha;
 
-    @NotNull(message = "A data de nascimento não pode ser nula")
     protected LocalDate data_nascimento;
 
     protected String genero;

@@ -24,11 +24,10 @@ public class AuthPaciente {
         if (pacienteOpt.isPresent()) {
             PacienteEntity paciente = pacienteOpt.get();
             if (passwordEncoder.matches(senha, paciente.getSenha())) {
-                return paciente; 
+                return paciente; // Retorna o paciente autenticado
             }
         }
         
-        return null;
+        return null; // Retorna null se não encontrar ou senha incorreta
     }
 }
-
